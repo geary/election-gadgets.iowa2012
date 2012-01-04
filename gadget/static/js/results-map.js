@@ -22,7 +22,7 @@ var strings = {
 };
 
 var candidates = [
-	{ color: '#DE6310', id: 'Bachmann', firstName: 'Michelle', lastName: 'Bachmann', fullName: 'Michelle Bachmann' },
+	{ color: '#DE6310', id: 'Bachmann', firstName: 'Michele', lastName: 'Bachmann', fullName: 'Michele Bachmann' },
 	{ color: '#54F1F1', id: 'Cain', firstName: 'Herman', lastName: 'Cain', fullName: 'Herman Cain' },
 	{ color: '#D50F25', id: 'Gingrich', firstName: 'Newt', lastName: 'Gingrich', fullName: 'Newt Gingrich' },
 	{ color: '#666666', id: 'Huntsman', firstName: 'Jon', lastName: 'Huntsman', fullName: 'Jon Huntsman' },
