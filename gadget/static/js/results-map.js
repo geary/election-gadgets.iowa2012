@@ -12,6 +12,7 @@ var strings = {
 	allCandidates: 'All Candidates',
 	allCandidatesShort: 'All',
 	percentReporting: '{{percent}} reporting ({{counted}}/{{total}})',
+	percentReportingShort: '{{percent}} reporting',
 	//countdownHeading: 'Live results in:',
 	//countdownHours: '{{hours}} hours',
 	//countdownHour: '1 hour',
@@ -1168,6 +1169,17 @@ function formatLegendTable( cells ) {
 		return total;
 	}
 	
+	function totalReporting( results ) {
+		var rows = results.rows;
+		var counted = 0, total = 0;
+		for( var row, i = -1;  row = rows[++i]; ) {
+			for( var n = col.ID, j = -1;  ++j < n; )
+				counted += row[j];
+			total += row[col.NumVoters];
+		}
+		return counted / total;
+	}
+	
 	function topCandidatesByVote( result, max ) {
 		max = max || Infinity;
 		if( ! result ) return [];
@@ -1216,7 +1228,9 @@ function formatLegendTable( cells ) {
 			'<td class="legend-candidate', selected, '" id="legend-candidate-top">',
 				'<div class="legend-candidate">',
 					formatSpanColorPatch( colors, 2 ),
-					'&nbsp;', 'allCandidatesShort'.T(), '&nbsp;',
+					'&nbsp;', 'percentReportingShort'.T({
+						percent: percent( totalReporting( currentResults() ) )
+					}), '&nbsp;',
 				'</div>',
 			'</td>'
 		);
