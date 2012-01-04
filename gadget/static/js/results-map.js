@@ -1173,9 +1173,8 @@ function formatLegendTable( cells ) {
 		var rows = results.rows;
 		var counted = 0, total = 0;
 		for( var row, i = -1;  row = rows[++i]; ) {
-			for( var n = col.ID, j = -1;  ++j < n; )
-				counted += row[j];
-			total += row[col.NumVoters];
+			counted += row[col.NumCountedBallotBoxes];
+			total += row[col.NumBallotBoxes];
 		}
 		return counted / total;
 	}
@@ -1228,7 +1227,7 @@ function formatLegendTable( cells ) {
 			'<td class="legend-candidate', selected, '" id="legend-candidate-top">',
 				'<div class="legend-candidate">',
 					formatSpanColorPatch( colors, 2 ),
-					'&nbsp;', 'allCandidatesShort'/*'percentReportingShort'*/.T({
+					'&nbsp;', 'percentReportingShort'.T({
 						percent: percent( totalReporting( currentResults() ) )
 					}), '&nbsp;',
 				'</div>',
