@@ -1228,7 +1228,7 @@ function formatLegendTable( cells ) {
 			'<td class="legend-candidate', selected, '" id="legend-candidate-top">',
 				'<div class="legend-candidate">',
 					formatSpanColorPatch( colors, 2 ),
-					'&nbsp;', 'percentReportingShort'.T({
+					'&nbsp;', 'allCandidatesShort'/*'percentReportingShort'*/.T({
 						percent: percent( totalReporting( currentResults() ) )
 					}), '&nbsp;',
 				'</div>',
