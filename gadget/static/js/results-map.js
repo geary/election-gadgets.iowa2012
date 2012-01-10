@@ -1344,8 +1344,6 @@ function formatLegendTable( cells ) {
 		);
 	}
 	
-	var tipLeft, tipTop;
-	
 	function moveTip( event ) {
 		if( ! tipHtml ) return;
 		var x = event.pageX, y = event.pageY;
@@ -1361,28 +1359,21 @@ function formatLegendTable( cells ) {
 		y += tipOffset.y;
 		var pad = 2;
 		var width = $maptip.width(), height = $maptip.height();
-		var offsetLeft = width + tipOffset.x * 1.5;
-		var offsetTop = height + tipOffset.y * 1.5;
-		if( tipLeft ) {
-			if( x - offsetLeft < pad )
-				tipLeft = false;
-			else
-				x -= offsetLeft;
+		var offsetLeft = width + tipOffset.x * 2;
+		var offsetTop = height + tipOffset.y * 2;
+		
+		if( x + width > ww - pad ) {
+			x -= width + pad + tipOffset.x * 2;
 		}
-		else {
-			if( x + width > ww - pad )
-				tipLeft = true,  x -= offsetLeft;
+		if( x < pad ) {
+			x = pad;
 		}
-		if( tipTop ) {
-			if( y - offsetTop < pad )
-				tipTop = false;
-			else
-				y -= offsetTop;
-		}
-		else {
-			if( y + height > wh - pad )
-				tipTop = true,  y -= offsetTop;
-		}
+		
+		if( y + height > wh - pad )
+			y -= height + pad + tipOffset.y * 2;
+		if( y < pad )
+			y = wh - pad - height - tipOffset.y * 2;
+		
 		$maptip.css({ left:x, top:y });
 	}
 	
